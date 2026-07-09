@@ -1,15 +1,8 @@
-# TODO - Timesheet2 initial skeleton
-
-- [x] Inspect existing routing/controller/migrations.
-- [x] Create RBAC middleware: `app/Http/Middleware/AdminMiddleware.php`.
-- [x] Create controller stubs:
-  - `app/Http/Controllers/Web/User/AttendanceController.php`
-  - `app/Http/Controllers/Web/Admin/AdminDashboardController.php`
-  - `app/Http/Controllers/Api/AttendanceApiController.php`
-- [x] Create API routes skeleton in `routes/api.php`.
-- [x] Restructure `routes/web.php` into guest/user/admin groups.
-- [x] Add migration for `attendances` table: `database/migrations/2026_07_09_060000_create_attendances_table.php`.
-- [ ] Ensure middleware alias `admin` is registered (may require adding `app/Http/Kernel.php` or route middleware registration depending on Laravel version).
-- [ ] Run `php artisan migrate`.
-- [ ] Run `php artisan route:list` for final verification.
+# TODO
+- [ ] Replace `resources/views/dashboard.blade.php` UI with ultra-dark premium SaaS dashboard.
+- [ ] Implement left sidebar with minimalist nav + crimson active indicator line.
+- [ ] Build asymmetrical bento grid layout (progress cards, task checklist, time tracker, geometric calendar, messages stream).
+- [ ] Style widgets with deep charcoal background, slate cards, crimson/amber accents, flat vector-like look.
+- [ ] Add functional micro time-tracking component with Pause/Resume button (front-end JS).
+- [ ] Ensure Blade/Tailwind markup has no syntax errors.
 

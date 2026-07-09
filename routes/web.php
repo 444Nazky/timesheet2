@@ -58,11 +58,11 @@ Route::middleware('guest')->group(function () {
 // --------------------
 // User panel routes
 // --------------------
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
+Route::middleware('auth')->group(function () {
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
 
     // For now, keep the existing implementation.
