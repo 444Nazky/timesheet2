@@ -13,7 +13,7 @@ class AttendanceController extends Controller
     public function index(): View
     {
         // TODO: render the attendance page for the authenticated employee.
-        return view('attendance');
+        return view('pages.attendance');
     }
 
     public function clockIn(Request $request): Response|RedirectResponse|View

@@ -9,7 +9,7 @@ class AdminDashboardController extends Controller
     public function index()
     {
         // TODO: render the admin dashboard view.
-        return view('admin.dashboard');
+        return view('pages.admin.dashboard');
     }
 }
 

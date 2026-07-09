@@ -25,7 +25,7 @@ Route::get('/', function () {
 // --------------------
 Route::middleware('guest')->group(function () {
     Route::get('/login', function () {
-        return view('login');
+        return view('pages.login');
     })->name('login');
 
     Route::post('/login', function (Request $request) {
@@ -60,7 +60,7 @@ Route::middleware('guest')->group(function () {
 // --------------------
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('pages.dashboard');
     })->name('dashboard');
 
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/history', function () {
         // TODO: render attendance history for the authenticated user.
-        return view('history');
+        return view('pages.history');
     })->name('attendance.history');
 
     Route::get('/leave-request', function () {
@@ -85,7 +85,7 @@ Route::middleware('auth')->group(function () {
     })->name('profile');
 
     Route::get('/reports', function () {
-        return view('reports');
+        return view('pages.reports');
     })->name('reports');
 
     // --------------------
