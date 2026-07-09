@@ -42,6 +42,15 @@ A secure, multi-user timesheet application built with Laravel. It features Role-
     ```
     Access the application at `http://127.0.0.1:8000`.
 
+    **To stop the server:** Press `Ctrl + C` in the terminal where it is running.
+    If running in the background, find and kill the process:
+    ```bash
+    # Find the PID
+    lsof -i :8000
+    # Kill the process
+    kill <PID>
+    ```
+
 *Note: The application uses `auth` middleware. You must implement authentication (e.g., via Laravel Breeze or Jetstream) before the routes are fully accessible.*
 
 ## Debugging
