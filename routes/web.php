@@ -60,7 +60,7 @@ Route::middleware('guest')->group(function () {
 // --------------------
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
-        return view('pages.dashboard');
+        return view('dashboard');
     })->name('dashboard');
 
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');

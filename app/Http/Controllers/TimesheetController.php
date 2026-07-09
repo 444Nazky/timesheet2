@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Timesheet;
 use Illuminate\Http\Request;
 
 class TimesheetController extends Controller
@@ -9,14 +10,14 @@ class TimesheetController extends Controller
     public function clockIn(Request $request)
     {
         $request->validate([
-            'location' => 'required|array',
+            'location' => 'nullable|array',
         ]);
 
         $timesheet = Timesheet::create([
             'user_id' => auth()->id(),
             'clock_in' => now(),
             'ip_address' => $request->ip(),
-            'location' => $request->location,
+            'location' => $request->input('location', []),
         ]);
 
         return response()->json(['message' => 'Clock-in successful', 'data' => $timesheet]);
