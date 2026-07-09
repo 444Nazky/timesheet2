@@ -16,6 +16,10 @@ Route::post('/logout', function (Request $request) {
     return redirect()->route('login');
 });
 
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+})->middleware('auth');
+
 // --------------------
 // Guest routes
 // --------------------
@@ -33,7 +37,7 @@ Route::middleware('guest')->group(function () {
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/dashboard');
+            return redirect()->route('dashboard');
         }
 
         return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
