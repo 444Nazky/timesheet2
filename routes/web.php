@@ -18,7 +18,7 @@ Route::post('/logout', function (Request $request) {
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
-})->middleware('auth');
+});
 
 // --------------------
 // Guest routes
@@ -29,18 +29,24 @@ Route::middleware('guest')->group(function () {
     })->name('login');
 
     Route::post('/login', function (Request $request) {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
+        // Temporary login stub for development.
+        // Any email/password will authenticate the first user in DB.
+        // Replace with real auth validation later.
+        $request->validate([
+            'email' => ['required'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        $user = \App\Models\User::query()->orderBy('id')->first();
+
+        if ($user) {
+            Auth::login($user);
             $request->session()->regenerate();
 
             return redirect()->route('dashboard');
         }
 
-        return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
+        return back()->withErrors(['email' => 'No users found in database.']);
     });
 
     Route::get('/forgot-password', function () {

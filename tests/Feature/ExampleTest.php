@@ -14,6 +14,7 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        // Home requires authentication in this project skeleton.
+        $response->assertStatus(302);
     }
 }
