@@ -23,11 +23,11 @@ Route::get('/', function () {
 // --------------------
 // Guest routes
 // --------------------
-Route::middleware('guest')->group(function () {
-    Route::get('/login', function () {
-        return view('pages.login');
-    })->name('login');
+Route::get('/login', function () {
+    return view('pages.login');
+})->name('login');
 
+Route::middleware('guest')->group(function () {
     Route::post('/login', function (Request $request) {
         // Temporary login stub for development.
         // Any email/password will authenticate the first user in DB.
