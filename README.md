@@ -12,20 +12,37 @@ A secure, multi-user timesheet application built with Laravel. It features Role-
   - Laravel's built-in CSRF protection is enabled by default.
   - XSS protection via Blade escaping.
 
-## How to Run
-1.  **Environment:** Ensure PHP 8.x, Composer, and MySQL are installed.
-2.  **Setup:**
+## How to Run on Localhost
+1.  **Environment Setup:**
+    Ensure you have PHP 8.x, Composer, and a MySQL server running locally.
+    
+2.  **Configuration:**
+    - Copy the environment file: `cp .env.example .env`
+    - Generate your app key: `php artisan key:generate`
+    - Open `.env` and update the `DB_*` settings with your local MySQL credentials:
+      ```ini
+      DB_CONNECTION=mysql
+      DB_HOST=127.0.0.1
+      DB_PORT=3306
+      DB_DATABASE=your_database_name
+      DB_USERNAME=your_database_username
+      DB_PASSWORD=your_database_password
+      ```
+
+3.  **Database Migration:**
+    Run the migrations to create the necessary tables:
     ```bash
-    cp .env.example .env
-    php artisan key:generate
-    # Configure your DB credentials in .env
     php artisan migrate
     ```
-3.  **Start:**
+
+4.  **Start the Server:**
+    Start the Laravel development server:
     ```bash
-    npm install && npm run dev
     php artisan serve
     ```
+    Access the application at `http://127.0.0.1:8000`.
+
+*Note: The application uses `auth` middleware. You must implement authentication (e.g., via Laravel Breeze or Jetstream) before the routes are fully accessible.*
 
 ## Debugging
 - **Logs:** Check `storage/logs/laravel.log`.
