@@ -106,21 +106,70 @@ Table: `attendances`
 
 ---
 
-## How to Run
+## How to Run (Localhost)
 
+### Prerequisites
+- PHP **8.3**
+- Composer
+- Node.js + npm
+- A database (project migrations include `roles`, `users`, `timesheets`, `attendances`, etc.)
+
+### 1) Install dependencies
 ```bash
 composer install
+npm install
+```
+
+### 2) Configure environment
+```bash
 cp .env.example .env
 php artisan key:generate
+```
+
+Edit `.env` and set at least:
+- `APP_URL=http://127.0.0.1:8000`
+- `DB_CONNECTION` (mysql/pgsql/sqlite/etc.)
+- your DB credentials (`DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`)
+
+### 3) Create tables
+```bash
 php artisan migrate
-php artisan route:list
-npm install
+```
+
+(Recommended) Seed a test user:
+```bash
+php artisan db:seed
+```
+
+The current `DatabaseSeeder` creates:
+- **email:** `test@example.com`
+- **name:** `Test User`
+
+### 4) Run the app
+In one terminal:
+```bash
+php artisan serve
+```
+This usually starts the server at:
+- http://127.0.0.1:8000
+
+In another terminal (for Vite assets):
+```bash
 npm run dev
 ```
+
+### 5) Quick sanity checks
+```bash
+php artisan route:list
+```
+
+### Login
+Because `routes/web.php` uses a temporary development login stub, it logs in the **first user found in the database** (so after running `migrate` + `db:seed`, login should work).
 
 ---
 
 ## Notes
-- The `admin` middleware alias registration depends on the Laravel middleware bootstrap configuration in this project.
-- This repo snapshot does not include `app/Http/Kernel.php`, so you may need to register the `AdminMiddleware` alias in the Laravel bootstrap/middleware configuration (version-dependent). 
+- `AdminMiddleware` checks the authenticated user’s `role` relation (or falls back to `role_id`) and requires `role->name === 'admin'`.
+- If `/admin/...` routes are returning 403, ensure the middleware alias is registered in your Laravel bootstrap/middleware configuration (this repo snapshot does not include `app/Http/Kernel.php`).
+
 
