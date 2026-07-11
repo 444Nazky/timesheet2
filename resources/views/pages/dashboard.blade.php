@@ -20,7 +20,7 @@
                 <!-- Navigation List System -->
                 <nav class="space-y-2">
                     <!-- Dashboard Link (Active State) -->
-                    <a href="#" class="flex items-center justify-between group px-4 py-3.5 rounded-xl bg-[#2b2e35]/40 text-[#f24343] font-bold text-xs tracking-widest uppercase transition-all">
+                    <a href="{{ route('dashboard') }}" class="flex items-center justify-between group px-4 py-3.5 rounded-xl bg-[#2b2e35]/40 text-[#f24343] font-bold text-xs tracking-widest uppercase transition-all">
                         <div class="flex items-center gap-3.5">
                             <svg class="h-4 w-4 text-[#f24343]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"/>
@@ -40,12 +40,12 @@
                         'Reports' => 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
                         'Settings' => 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z'
                     ] as $item => $path)
-                    <a href="#" class="flex items-center gap-3.5 px-4 py-3.5 text-slate-500 hover:text-slate-300 font-bold text-xs tracking-widest uppercase transition-all">
-                        <svg class="h-4 w-4 text-slate-500 group-hover:text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="{{ $path }}"/>
-                        </svg>
-                        <span>{{ $item }}</span>
-                    </a>
+                        <a href="{{ $item === 'Projects' ? url('/projects') : '#' }}" class="flex items-center gap-3.5 px-4 py-3.5 text-slate-500 hover:text-slate-300 font-bold text-xs tracking-widest uppercase transition-all">
+                            <svg class="h-4 w-4 text-slate-500 group-hover:text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="{{ $path }}"/>
+                            </svg>
+                            <span>{{ $item }}</span>
+                        </a>
                     @endforeach
                 </nav>
             </div>
@@ -73,7 +73,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                         </svg>
                     </button>
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Avatar User" class="h-8 w-8 rounded-full border border-slate-700 object-cover">
+                    <img src="assets/guest.svg" alt="Avatar User" class="h-8 w-8 rounded-full border border-slate-700 object-cover">
                 </div>
             </div>
 
@@ -126,9 +126,9 @@
                                 <span class="text-[10px] font-bold text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-md tracking-wider uppercase">UI/UX</span>
                             </div>
                             <div class="flex -space-x-2 overflow-hidden">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=50&q=80" alt="">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=50&q=80" alt="">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=50&q=80" alt="">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="assets/guest.svg" alt="">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="assets/guest.svg" alt="">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="assets/guest.svg" alt="">
                                 <div class="flex h-6 w-6 items-center justify-center rounded-full bg-[#1e2022] text-[9px] font-bold text-slate-400 ring-2 ring-[#272a30]">+5</div>
                             </div>
                         </div>
@@ -178,9 +178,9 @@
                                 <span class="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md tracking-wider uppercase">IOS APP</span>
                                 <span class="text-[10px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-md tracking-wider uppercase">ANDROID</span>
                             </div>
-                            <div class="flex -space-x-2 overflow-hidden">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=50&q=80" alt="">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=50&q=80" alt="">
+<div class="flex -space-x-2 overflow-hidden">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="assets/guest.svg" alt="">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="assets/guest.svg" alt="">
                                 <div class="flex h-6 w-6 items-center justify-center rounded-full bg-[#1e2022] text-[9px] font-bold text-slate-400 ring-2 ring-[#272a30]">+2</div>
                             </div>
                         </div>
@@ -316,11 +316,11 @@
                     <div class="bg-[#272a30] rounded-[2rem] p-6 border border-slate-800/20 shadow-lg shadow-black/10">
                         <h3 class="text-sm font-bold text-white mb-5 tracking-wide">Messages</h3>
                         <div class="space-y-4.5">
-                            @foreach([
-                                ['name' => 'John Doe', 'msg' => 'Hi Angelina! How are you?', 'img' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80'],
-                                ['name' => 'Charmie', 'msg' => 'Do you need that design?', 'img' => 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=80&q=80'],
-                                ['name' => 'Jason Mandela', 'msg' => 'What is the price of hourly...', 'img' => 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=80&q=80'],
-                                ['name' => 'Charlie Chu', 'msg' => 'Awesome!', 'img' => 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=80&q=80']
+@foreach([
+                                ['name' => 'John Doe', 'msg' => 'Hi Angelina! How are you?', 'img' => 'assets/guest.svg'],
+                                ['name' => 'Charmie', 'msg' => 'Do you need that design?', 'img' => 'assets/guest.svg'],
+                                ['name' => 'Jason Mandela', 'msg' => 'What is the price of hourly...', 'img' => 'assets/guest.svg'],
+                                ['name' => 'Charlie Chu', 'msg' => 'Awesome!', 'img' => 'assets/guest.svg']
                             ] as $msg)
                             <div class="flex items-center gap-3.5 text-xs pb-3.5 border-b border-slate-800/40 last:border-0 last:pb-0">
                                 <div class="relative shrink-0">

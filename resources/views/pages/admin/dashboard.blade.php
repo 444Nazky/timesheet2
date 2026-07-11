@@ -73,7 +73,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                         </svg>
                     </button>
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Avatar User" class="h-8 w-8 rounded-full border border-slate-700 object-cover">
+<img src="assets/guest.svg" alt="Avatar User" class="h-8 w-8 rounded-full border border-slate-700 object-cover">
                 </div>
             </div>
 
@@ -126,9 +126,9 @@
                                 <span class="text-[10px] font-bold text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-md tracking-wider uppercase">UI/UX</span>
                             </div>
                             <div class="flex -space-x-2 overflow-hidden">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=50&q=80" alt="">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=50&q=80" alt="">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=50&q=80" alt="">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="assets/guest.svg" alt="">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="assets/guest.svg" alt="">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="assets/guest.svg" alt="">
                                 <div class="flex h-6 w-6 items-center justify-center rounded-full bg-[#1e2022] text-[9px] font-bold text-slate-400 ring-2 ring-[#272a30]">+5</div>
                             </div>
                         </div>
@@ -179,8 +179,8 @@
                                 <span class="text-[10px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-md tracking-wider uppercase">ANDROID</span>
                             </div>
                             <div class="flex -space-x-2 overflow-hidden">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=50&q=80" alt="">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=50&q=80" alt="">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="assets/guest.svg" alt="">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-[#272a30] object-cover" src="assets/guest.svg" alt="">
                                 <div class="flex h-6 w-6 items-center justify-center rounded-full bg-[#1e2022] text-[9px] font-bold text-slate-400 ring-2 ring-[#272a30]">+2</div>
                             </div>
                         </div>
@@ -317,10 +317,10 @@
                         <h3 class="text-sm font-bold text-white mb-5 tracking-wide">Messages</h3>
                         <div class="space-y-4.5">
                             @foreach([
-                                ['name' => 'John Doe', 'msg' => 'Hi Angelina! How are you?', 'img' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80'],
-                                ['name' => 'Charmie', 'msg' => 'Do you need that design?', 'img' => 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=80&q=80'],
-                                ['name' => 'Jason Mandela', 'msg' => 'What is the price of hourly...', 'img' => 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=80&q=80'],
-                                ['name' => 'Charlie Chu', 'msg' => 'Awesome!', 'img' => 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=80&q=80']
+                                ['name' => 'John Doe', 'msg' => 'Hi Angelina! How are you?', 'img' => 'assets/guest.svg'],
+                                ['name' => 'Charmie', 'msg' => 'Do you need that design?', 'img' => 'assets/guest.svg'],
+                                ['name' => 'Jason Mandela', 'msg' => 'What is the price of hourly...', 'img' => 'assets/guest.svg'],
+                                ['name' => 'Charlie Chu', 'msg' => 'Awesome!', 'img' => 'assets/guest.svg']
                             ] as $msg)
                             <div class="flex items-center gap-3.5 text-xs pb-3.5 border-b border-slate-800/40 last:border-0 last:pb-0">
                                 <div class="relative shrink-0">

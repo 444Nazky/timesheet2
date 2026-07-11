@@ -327,7 +327,7 @@
                     btn.innerHTML = originalText;
                     btn.style.background = '';
                     // Redirect to dashboard
-                    window.location.href = 'dashboard.html';
+                    window.location.href = 'dashboard';
                 }, 1500);
             } else {
                 alert('Invalid credentials. Use admin@timesheet.com / admin123');
