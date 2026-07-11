@@ -14,6 +14,11 @@
         
         body {
             background: #f2f3f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
         }
         
         @keyframes slide-up {
@@ -27,15 +32,6 @@
             }
         }
         
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
         @keyframes pulse-dot {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(0.85); }
@@ -45,12 +41,19 @@
             animation: slide-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         
-        .animate-fade-in {
-            animation: fade-in 0.8s ease-out forwards;
-        }
-        
         .animate-pulse-dot {
             animation: pulse-dot 2s infinite;
+        }
+        
+        /* Login Card - Everything inside */
+        .login-card {
+            background: #f6f7f9;
+            border: 1px solid #e2e4e8;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            padding: 2.5rem;
+            max-width: 420px;
+            width: 100%;
         }
         
         /* Input styles */
@@ -103,25 +106,6 @@
             color: #1a1a1a;
         }
         
-        /* Card styles - FIXED */
-        .login-card {
-            background: #f6f7f9;
-            border: 1px solid #e2e4e8;
-            border-radius: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-            padding: 2rem;
-        }
-        
-        /* Link styles */
-        .link {
-            color: #8a8a8a;
-            transition: color 0.2s ease;
-        }
-        
-        .link:hover {
-            color: #1a1a1a;
-        }
-        
         /* Custom checkbox */
         .custom-checkbox {
             appearance: none;
@@ -156,6 +140,28 @@
             outline-offset: 2px;
         }
         
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: #e2e4e8;
+        }
+        
+        .divider-text {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: #8a8a8a;
+            white-space: nowrap;
+        }
+        
         /* Scrollbar */
         ::-webkit-scrollbar {
             width: 4px;
@@ -169,113 +175,113 @@
         }
     </style>
 </head>
-<body class="bg-[#f2f3f5] flex items-center justify-center min-h-screen p-4">
-    <div class="w-full max-w-[400px] animate-slide-up">
-        <!-- Header -->
-        <div class="text-center mb-8 animate-fade-in">
-            <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl border border-[#e2e4e8] bg-[#f6f7f9] mb-4">
+<body>
+    <!-- Everything inside one card -->
+    <div class="login-card animate-slide-up">
+        <!-- Icon -->
+        <div class="flex justify-center mb-6">
+            <div class="flex items-center justify-center w-14 h-14 rounded-2xl border border-[#e2e4e8] bg-[#f2f3f5]">
                 <i class="fa-regular fa-clock text-2xl text-[#1a1a1a]"></i>
             </div>
+        </div>
+
+        <!-- Welcome Header - Inside Card -->
+        <div class="text-center mb-8">
             <h1 class="text-2xl font-semibold tracking-tight text-[#1a1a1a]">Welcome back</h1>
             <p class="mt-1.5 text-sm text-[#8a8a8a]">Sign in to your timesheet account</p>
         </div>
 
-        <!-- Login Card - FIXED -->
-        <div class="login-card animate-fade-in" style="animation-delay: 0.1s;">
-            <form method="POST" action="/login">
-                @csrf
-                
-                <!-- Email -->
-                <div class="mb-4">
-                    <label class="block text-xs font-medium uppercase tracking-[0.2em] text-[#6a6a6a] mb-1.5">
-                        Email address
+        <!-- Form -->
+        <form method="POST" action="/login">
+            @csrf
+            
+            <!-- Email -->
+            <div class="mb-4">
+                <label class="block text-xs font-medium uppercase tracking-[0.2em] text-[#6a6a6a] mb-1.5">
+                    Email address
+                </label>
+                <div class="relative">
+                    <input 
+                        type="email" 
+                        name="email" 
+                        class="input-field rounded-xl px-4 py-3 pr-11 text-sm transition" 
+                        placeholder="you@example.com" 
+                        required
+                    >
+                    <i class="fa-regular fa-envelope absolute right-4 top-1/2 -translate-y-1/2 text-[#8a8a8a] text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-1.5">
+                    <label class="text-xs font-medium uppercase tracking-[0.2em] text-[#6a6a6a]">
+                        Password
                     </label>
-                    <div class="relative">
-                        <input 
-                            type="email" 
-                            name="email" 
-                            class="input-field rounded-xl px-4 py-3 pr-11 text-sm transition" 
-                            placeholder="you@example.com" 
-                            required
-                        >
-                        <i class="fa-regular fa-envelope absolute right-4 top-1/2 -translate-y-1/2 text-[#8a8a8a] text-sm"></i>
-                    </div>
+                    <a href="#" class="text-xs text-[#8a8a8a] hover:text-[#1a1a1a] transition font-medium">
+                        Forgot?
+                    </a>
                 </div>
-
-                <!-- Password -->
-                <div class="mb-6">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <label class="text-xs font-medium uppercase tracking-[0.2em] text-[#6a6a6a]">
-                            Password
-                        </label>
-                        <a href="#" class="text-xs text-[#8a8a8a] hover:text-[#1a1a1a] transition font-medium">
-                            Forgot?
-                        </a>
-                    </div>
-                    <div class="relative">
-                        <input 
-                            type="password" 
-                            name="password" 
-                            class="input-field rounded-xl px-4 py-3 pr-11 text-sm transition" 
-                            placeholder="Enter your password" 
-                            required
-                        >
-                        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-[#8a8a8a] hover:text-[#1a1a1a] transition" id="togglePassword">
-                            <i class="fa-regular fa-eye"></i>
-                        </button>
-                    </div>
+                <div class="relative">
+                    <input 
+                        type="password" 
+                        name="password" 
+                        class="input-field rounded-xl px-4 py-3 pr-11 text-sm transition" 
+                        placeholder="Enter your password" 
+                        required
+                    >
+                    <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-[#8a8a8a] hover:text-[#1a1a1a] transition" id="togglePassword">
+                        <i class="fa-regular fa-eye"></i>
+                    </button>
                 </div>
+            </div>
 
-                <!-- Options -->
-                <div class="flex items-center justify-between mb-6">
-                    <label class="flex items-center gap-2.5 text-sm text-[#6a6a6a] cursor-pointer">
-                        <input type="checkbox" class="custom-checkbox">
-                        <span>Remember me</span>
-                    </label>
-                    <div class="flex items-center gap-2">
-                        <span class="inline-block h-1.5 w-1.5 rounded-full bg-[#1a1a1a] animate-pulse-dot"></span>
-                        <span class="text-xs text-[#8a8a8a] font-medium">Secure</span>
-                    </div>
+            <!-- Options -->
+            <div class="flex items-center justify-between mb-6">
+                <label class="flex items-center gap-2.5 text-sm text-[#6a6a6a] cursor-pointer">
+                    <input type="checkbox" class="custom-checkbox">
+                    <span>Remember me</span>
+                </label>
+                <div class="flex items-center gap-2">
+                    <span class="inline-block h-1.5 w-1.5 rounded-full bg-[#1a1a1a] animate-pulse-dot"></span>
+                    <span class="text-xs text-[#8a8a8a] font-medium">Secure</span>
                 </div>
+            </div>
 
-                <!-- Login Button -->
-                <button type="submit" class="btn-primary rounded-xl py-3.5 text-sm font-medium transition">
-                    <i class="fa-regular fa-arrow-right-to-bracket mr-2"></i>
-                    Sign In
+            <!-- Login Button -->
+            <button type="submit" class="btn-primary rounded-xl py-3.5 text-sm font-medium transition">
+                <i class="fa-regular fa-arrow-right-to-bracket mr-2"></i>
+                Sign In
+            </button>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span class="divider-line"></span>
+                <span class="divider-text">Or continue with</span>
+                <span class="divider-line"></span>
+            </div>
+
+            <!-- Social Buttons -->
+            <div class="grid grid-cols-2 gap-3">
+                <button type="button" class="btn-secondary flex items-center justify-center gap-2.5 rounded-xl px-4 py-2.5 text-sm font-medium transition">
+                    <i class="fa-brands fa-google text-[#1a1a1a]"></i>
+                    Google
                 </button>
+                <button type="button" class="btn-secondary flex items-center justify-center gap-2.5 rounded-xl px-4 py-2.5 text-sm font-medium transition">
+                    <i class="fa-brands fa-github text-[#1a1a1a]"></i>
+                    GitHub
+                </button>
+            </div>
+        </form>
 
-                <!-- Divider -->
-                <div class="relative my-6">
-                    <div class="absolute inset-0 flex items-center">
-                        <div class="w-full border-t border-[#e2e4e8]"></div>
-                    </div>
-                    <div class="relative flex justify-center">
-                        <span class="bg-[#f6f7f9] px-4 text-[10px] uppercase tracking-[0.3em] text-[#8a8a8a]">Or continue with</span>
-                    </div>
-                </div>
+        <!-- Sign Up -->
+        <p class="mt-6 text-center text-sm text-[#8a8a8a]">
+            Don't have an account? 
+            <a href="#" class="font-medium text-[#1a1a1a] hover:underline transition">Create one</a>
+        </p>
 
-                <!-- Social Buttons -->
-                <div class="grid grid-cols-2 gap-3">
-                    <button type="button" class="btn-secondary flex items-center justify-center gap-2.5 rounded-xl px-4 py-2.5 text-sm font-medium transition">
-                        <i class="fa-brands fa-google text-[#1a1a1a]"></i>
-                        Google
-                    </button>
-                    <button type="button" class="btn-secondary flex items-center justify-center gap-2.5 rounded-xl px-4 py-2.5 text-sm font-medium transition">
-                        <i class="fa-brands fa-github text-[#1a1a1a]"></i>
-                        GitHub
-                    </button>
-                </div>
-            </form>
-
-            <!-- Sign Up -->
-            <p class="mt-6 text-center text-sm text-[#8a8a8a]">
-                Don't have an account? 
-                <a href="#" class="font-medium text-[#1a1a1a] hover:underline transition">Create one</a>
-            </p>
-        </div>
-
-        <!-- Footer -->
-        <div class="mt-6 text-center animate-fade-in" style="animation-delay: 0.2s;">
+        <!-- Footer Inside Card -->
+        <div class="mt-6 pt-6 border-t border-[#e2e4e8] text-center">
             <p class="text-[10px] uppercase tracking-[0.3em] text-[#8a8a8a]">
                 <i class="fa-regular fa-shield-check mr-1.5"></i>
                 Secure timesheet • v1.0
@@ -313,10 +319,14 @@
             
             if (email === 'admin@timesheet.com' && password === 'admin123') {
                 const btn = this.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
                 btn.innerHTML = '<i class="fa-regular fa-circle-check mr-2"></i> Welcome back!';
-                btn.classList.add('bg-[#1a1a1a]');
+                btn.style.background = '#1a1a1a';
                 
                 setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    // Redirect to dashboard
                     window.location.href = 'dashboard.html';
                 }, 1500);
             } else {

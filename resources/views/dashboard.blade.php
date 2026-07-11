@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astra OS - Timesheet Dashboard</title>
+    <title>Timesheet Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -221,7 +221,7 @@
             <div class="mb-6 rounded-2xl bg-[#1a1a1a] p-8 text-[#f2f3f5]">
                 <div class="flex flex-wrap items-center justify-between">
                     <div>
-                        <p class="text-sm font-light opacity-70">Good morning, Sarah</p>
+                        <p class="text-sm font-light opacity-70">Good mornning, admin</p>
                         <h2 class="mt-1.5 text-2xl font-semibold tracking-tight">You have 3 tasks pending review</h2>
                         <p class="mt-1 text-sm opacity-60">Your team is waiting for your feedback</p>
                     </div>
