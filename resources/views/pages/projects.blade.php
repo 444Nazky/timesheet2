@@ -120,18 +120,19 @@
             <nav class="space-y-1">
                 @php
                     $navItems = [
-                        ['label' => 'Dashboard', 'icon' => 'fa-th-large', 'href' => '#', 'active' => false, 'badge' => null],
-                        ['label' => 'Projects', 'icon' => 'fa-briefcase', 'href' => '#', 'active' => true, 'badge' => '12'],
-                        ['label' => 'My Task', 'icon' => 'fa-tasks', 'href' => '#', 'active' => false, 'badge' => '5'],
-                        ['label' => 'Calendar', 'icon' => 'fa-calendar-alt', 'href' => '#', 'active' => false, 'badge' => null],
-                        ['label' => 'Time Manage', 'icon' => 'fa-clock', 'href' => '#', 'active' => false, 'badge' => '3'],
-                        ['label' => 'Reports', 'icon' => 'fa-chart-bar', 'href' => '#', 'active' => false, 'badge' => null],
-                        ['label' => 'Settings', 'icon' => 'fa-cog', 'href' => '#', 'active' => false, 'badge' => null],
+                        ['label' => 'Dashboard', 'icon' => 'fa-th-large', 'route' => 'dashboard', 'active' => false, 'badge' => null],
+                        ['label' => 'Projects', 'icon' => 'fa-briefcase', 'route' => 'projects', 'active' => true, 'badge' => '12'],
+                        ['label' => 'My Task', 'icon' => 'fa-tasks', 'route' => 'tasks', 'active' => false, 'badge' => '5'],
+                        
+                        ['label' => 'Calendar', 'icon' => 'fa-calendar-alt', 'route' => 'dashboard', 'active' => false, 'badge' => null],
+                        ['label' => 'Time Manage', 'icon' => 'fa-clock', 'route' => 'dashboard', 'active' => false, 'badge' => '3'],
+                        ['label' => 'Reports', 'icon' => 'fa-chart-bar', 'route' => 'reports', 'active' => false, 'badge' => null],
+                        ['label' => 'Settings', 'icon' => 'fa-cog', 'route' => 'dashboard', 'active' => false, 'badge' => null],
                     ];
                 @endphp
 
                 @foreach ($navItems as $item)
-                    <a href="{{ $item['href'] }}" class="nav-item flex items-center justify-between rounded-xl px-4 py-2.5 text-xs font-medium tracking-wide transition-all duration-200 {{ $item['active'] ? 'active bg-[#eceef0] text-[#1a1a1a]' : 'text-[#6a6a6a] hover:bg-[#eceef0] hover:text-[#1a1a1a]' }}">
+                    <a href="{{ route($item['route']) }}" class="nav-item flex items-center justify-between rounded-xl px-4 py-2.5 text-xs font-medium tracking-wide transition-all duration-200 {{ $item['active'] ? 'active bg-[#eceef0] text-[#1a1a1a]' : 'text-[#6a6a6a] hover:bg-[#eceef0] hover:text-[#1a1a1a]' }}">
                         <span class="flex items-center gap-3">
                             <i class="fas {{ $item['icon'] }} w-4 text-center text-sm"></i>
                             {{ $item['label'] }}

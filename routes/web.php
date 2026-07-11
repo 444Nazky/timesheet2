@@ -66,6 +66,11 @@ Route::get('/projects', function () {
     return view('pages.projects');
 })->name('projects');
 
+Route::get('/tasks', function () {
+    return view('pages.tasks');
+})->name('tasks');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
