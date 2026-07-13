@@ -70,7 +70,13 @@ Route::get('/tasks', function () {
     return view('pages.tasks');
 })->name('tasks');
 
+Route::get('/time-manage', function () {
+    return view('pages.time-manage');
+})->name('time-manage');
 
+Route::get('/settings', function () {
+    return response()->json(['message' => 'Settings page (stub)'], 501);
+})->name('settings');
 
 Route::middleware('auth')->group(function () {
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
