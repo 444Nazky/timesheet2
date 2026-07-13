@@ -162,11 +162,11 @@
                     $navItems = [
                         ['label' => 'Dashboard', 'icon' => 'fa-th-large', 'active' => request()->routeIs('dashboard'), 'href' => route('dashboard'), 'badge' => null],
                         ['label' => 'Projects', 'icon' => 'fa-briefcase', 'active' => request()->routeIs('projects'), 'href' => route('projects'), 'badge' => '12'],
-                        ['label' => 'My Task', 'icon' => 'fa-tasks', 'active' => false, 'href' => '#', 'badge' => '5'],
-                        ['label' => 'Calendar', 'icon' => 'fa-calendar-alt', 'active' => false, 'href' => '#', 'badge' => null],
-                        ['label' => 'Time Manage', 'icon' => 'fa-clock', 'active' => false, 'href' => '#', 'badge' => '3'],
-                        ['label' => 'Reports', 'icon' => 'fa-chart-bar', 'active' => false, 'href' => '#', 'badge' => null],
-                        ['label' => 'Settings', 'icon' => 'fa-cog', 'active' => false, 'href' => '#', 'badge' => null],
+                        ['label' => 'My Task', 'icon' => 'fa-tasks', 'active' => request()->routeIs('tasks'), 'href' => route('tasks'), 'badge' => '5'],
+                        ['label' => 'Calendar', 'icon' => 'fa-calendar-alt', 'active' => request()->routeIs('calendar'), 'href' => route('calendar'), 'badge' => null],
+                        ['label' => 'Time Manage', 'icon' => 'fa-clock', 'active' => request()->routeIs('time-manage'), 'href' => route('time-manage'), 'badge' => '3'],
+                        ['label' => 'Reports', 'icon' => 'fa-chart-bar', 'active' => request()->routeIs('reports'), 'href' => route('reports'), 'badge' => null],
+                        ['label' => 'Settings', 'icon' => 'fa-cog', 'active' => request()->routeIs('settings'), 'href' => route('settings'), 'badge' => null],
                     ];
                 @endphp
 
@@ -444,14 +444,23 @@
                                     for($i = 1; $i <= 31; $i++) {
                                         $dates[] = $i;
                                     }
+                                    // Default highlights (will be replaced by API data on load)
                                     $events = [5, 12, 15, 20, 25, 28];
+                                    $meetingDates = [8, 15, 22, 29];
                                 @endphp
                                 @foreach ($dates as $date)
-                                    <div class="relative flex h-9 w-9 items-center justify-center rounded-full text-sm transition hover:bg-[#eceef0] {{ in_array($date, [8, 15, 22, 29]) ? 'font-semibold text-[#1a1a1a]' : '' }} {{ $date === 20 ? 'bg-[#1a1a1a] text-[#f6f7f9] hover:bg-[#333333]' : '' }}">
+                                    <div
+                                        class="relative flex h-9 w-9 items-center justify-center rounded-full text-sm transition hover:bg-[#eceef0]"
+                                        data-date="{{ $date }}"
+                                        data-highlight="{{ in_array($date, $events) ? '1' : '0' }}"
+                                        data-meeting="{{ in_array($date, $meetingDates) ? '1' : '0' }}"
+                                        data-deadline="{{ $date === 20 ? '1' : '0' }}"
+                                    >
                                         {{ $date }}
-                                        @if(in_array($date, $events))
-                                            <span class="absolute bottom-1 h-1 w-1 rounded-full {{ $date === 20 ? 'bg-[#f6f7f9]' : 'bg-[#1a1a1a]' }}"></span>
-                                        @endif
+                                        <span
+                                            class="absolute bottom-1 h-1 w-1 rounded-full transition-opacity"
+                                            style="{{ in_array($date, $events) ? 'opacity:1;' : 'opacity:0;' }} background: {{ $date === 20 ? '#f6f7f9' : '#1a1a1a' }};"
+                                        ></span>
                                     </div>
                                 @endforeach
                             </div>
@@ -486,10 +495,10 @@
                         </div>
                         <div class="space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
                             @php $messages = [
-                                ['name' => 'Nina', 'role' => 'Design Lead', 'text' => 'Updated the onboarding states. Ready for review!', 'time' => '2m'],
-                                ['name' => 'Milo', 'role' => 'Frontend', 'text' => 'The sprint review is ready. Can we meet at 3?', 'time' => '12m'],
-                                ['name' => 'Rae', 'role' => 'Product', 'text' => 'Confirmed the final copy. Everything looks great.', 'time' => '1h'],
-                                ['name' => 'Tom', 'role' => 'Backend', 'text' => 'API endpoints are ready for integration.', 'time' => '2h'],
+                                ['name' => 'User1', 'role' => 'Design Lead', 'text' => 'Updated the onboarding states. Ready for review!', 'time' => '2m'],
+                                ['name' => 'User2', 'role' => 'Frontend', 'text' => 'The sprint review is ready. Can we meet at 3?', 'time' => '12m'],
+                                ['name' => 'User3', 'role' => 'Product', 'text' => 'Confirmed the final copy. Everything looks great.', 'time' => '1h'],
+                                ['name' => 'User4', 'role' => 'Backend', 'text' => 'API endpoints are ready for integration.', 'time' => '2h'],
                             ]; @endphp
                             @foreach ($messages as $message)
                                 <div class="flex items-start gap-3 rounded-xl border border-[#e2e4e8] bg-[#f6f7f9] p-3 transition hover:border-[#c8c8c8]">
@@ -861,9 +870,58 @@
         });
         
         // ============================================
+        // API: Schedule highlights (replace calendar marks)
+        // ============================================
+
+        async function loadScheduleHighlights() {
+            try {
+                const res = await fetch('/api/app/schedule');
+                if (!res.ok) return;
+                const data = await res.json();
+
+                const highlights = Array.isArray(data.highlights) ? data.highlights : [];
+                const meeting = Array.isArray(data.legend?.meeting) ? data.legend.meeting : [];
+                const deadline = Array.isArray(data.legend?.deadline) ? data.legend.deadline : [];
+
+                document.querySelectorAll('[data-date]').forEach(el => {
+                    const date = parseInt(el.getAttribute('data-date'), 10);
+                    const isHighlight = highlights.includes(date);
+                    const isMeeting = meeting.includes(date);
+                    const isDeadline = deadline.includes(date);
+
+                    el.setAttribute('data-highlight', isHighlight ? '1' : '0');
+                    el.setAttribute('data-meeting', isMeeting ? '1' : '0');
+                    el.setAttribute('data-deadline', isDeadline ? '1' : '0');
+
+                    // Apply styles
+                    if (isMeeting) {
+                        el.classList.add('font-semibold', 'text-[#1a1a1a]');
+                    } else {
+                        el.classList.remove('font-semibold', 'text-[#1a1a1a]');
+                    }
+
+                    if (isDeadline) {
+                        el.classList.add('bg-[#1a1a1a]', 'text-[#f6f7f9]', 'hover:bg-[#333333]');
+                    } else {
+                        el.classList.remove('bg-[#1a1a1a]', 'text-[#f6f7f9]', 'hover:bg-[#333333]');
+                    }
+
+                    // Dot
+                    const dot = el.querySelector('span.absolute');
+                    if (dot) {
+                        dot.style.opacity = isHighlight ? '1' : '0';
+                        dot.style.background = isDeadline ? '#f6f7f9' : '#1a1a1a';
+                    }
+                });
+            } catch (e) {
+                console.warn('Schedule API load failed:', e);
+            }
+        }
+
+        // ============================================
         // INITIALIZE
         // ============================================
-        
+
         // Set initial state
         timerMode = 'stopwatch';
         elapsedSeconds = 0;
@@ -871,8 +929,12 @@
         updateDisplay();
         updateProgress();
         updateStats();
+
+        // Load schedule data after initial render
+        loadScheduleHighlights();
         
         console.log('✅ Enhanced timer initialized!');
+
         console.log('💡 Press Space to start/pause');
         console.log('🔄 Press R to reset');
         console.log('⏱️ Switch between Stopwatch & Countdown modes');

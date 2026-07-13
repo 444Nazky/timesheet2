@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AttendanceApiController;
+use App\Http\Controllers\Api\ScheduleApiController;
+
 
 Route::prefix('auth')->group(function () {
     // Auth endpoints (stubs for future API auth integration, e.g. Sanctum/JWT)
@@ -27,4 +29,11 @@ Route::prefix('attendance')->group(function () {
         ], 501);
     })->middleware('auth:sanctum');
 });
+
+Route::prefix('app')->group(function () {
+    Route::get('/schedule', [ScheduleApiController::class, 'index']);
+});
+
+
+
 
