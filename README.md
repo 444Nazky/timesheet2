@@ -172,4 +172,4 @@ Because `routes/web.php` uses a temporary development login stub, it logs in the
 - `AdminMiddleware` checks the authenticated user’s `role` relation (or falls back to `role_id`) and requires `role->name === 'admin'`.
 - If `/admin/...` routes are returning 403, ensure the middleware alias is registered in your Laravel bootstrap/middleware configuration (this repo snapshot does not include `app/Http/Kernel.php`).
 
-
+Test
