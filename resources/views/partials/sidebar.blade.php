@@ -17,7 +17,9 @@
                 ['label' => 'My Task', 'icon' => 'fa-tasks', 'route' => 'tasks', 'active' => request()->routeIs('tasks'), 'href' => route('tasks'), 'badge' => '5'],
                 ['label' => 'Calendar', 'icon' => 'fa-calendar-alt', 'route' => 'calendar', 'active' => request()->routeIs('calendar'), 'href' => route('calendar'), 'badge' => null],
                 ['label' => 'Time Manage', 'icon' => 'fa-clock', 'route' => 'time-manage', 'active' => request()->routeIs('time-manage'), 'href' => route('time-manage'), 'badge' => '3'],
+                ['label' => 'Time Management', 'icon' => 'fa-hourglass-half', 'route' => 'time-management', 'active' => request()->routeIs('time-management'), 'href' => route('time-management'), 'badge' => null],
                 ['label' => 'Reports', 'icon' => 'fa-chart-bar', 'route' => 'reports', 'active' => request()->routeIs('reports'), 'href' => route('reports'), 'badge' => null],
+
                 ['label' => 'Settings', 'icon' => 'fa-cog', 'route' => 'settings', 'active' => request()->routeIs('settings'), 'href' => route('settings'), 'badge' => null],
             ];
         @endphp

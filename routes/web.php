@@ -74,6 +74,11 @@ Route::get('/time-manage', function () {
     return view('pages.time-manage');
 })->name('time-manage');
 
+Route::get('/time-management', function () {
+    return view('pages.time-management');
+})->name('time-management');
+
+
 Route::get('/calendar', function () {
     return view('pages.calendar');
 })->name('calendar');
